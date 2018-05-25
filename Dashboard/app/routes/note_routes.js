@@ -2,7 +2,7 @@
 module.exports = function(app, db) {
   app.post('/notes', (req, res) => {
     var spawn = require("child_process").spawn,child;
-    child = spawn("powershell.exe",["C:/\\repo/\\Dashboard_TC2018/\\Kiosk-Mode/\\Ciklum-Kiosk.ps1"]);
+    child = spawn("powershell.exe",["C:/\\repo/\\speak-op/\\Dashboard/\\Kiosk-Mode/\\Ciklum-Kiosk.ps1"]);
     child.stdout.on("data",function(data){
         console.log("Powershell Data: " + data);
     });
