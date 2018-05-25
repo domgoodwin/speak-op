@@ -1,0 +1,3 @@
+[submodule "service-alerts-backend"]
+	path = service-alerts-backend
+	url = https://github.com/ethanduncan/service-alerts-backend
