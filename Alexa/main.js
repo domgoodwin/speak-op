@@ -16,7 +16,12 @@ const handlers = {
         // TODO: Friendly welcome message
     },
     'GetServiceStatus': function () {
-        console.log(GetServiceStatus.GetStatus());
+        service = "google";
+        GetServiceStatus.GetStatus(service, function(status){
+            console.log(status);
+            this.response.speak("The service " + service + " is currently " + status);
+            this.emit(':responseready')
+        });
     },
     'AMAZON.HelpIntent': function () {
         const speechOutput = HELP_MESSAGE;
