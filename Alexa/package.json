@@ -1,0 +1,30 @@
+{
+  "name": "speakop-lambda",
+  "version": "0.0.1",
+  "description": "AWS Lambda skill for Alexa SpeakOp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "set AWS_REGION=eu-west-2; set AWS_IAM_ROLE=arn:aws:iam::005713764567:role/lambda_basic_execution; dpl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domgoodwin/speak-op.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/domgoodwin/speak-op/issues"
+  },
+  "homepage": "https://github.com/domgoodwin/speak-op#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "alexa-sdk": "^1.0.25"
+  },
+  "files_to_deploy": [
+    "package.json",
+    "index.js",
+    "GetServiceStatus.js"
+  ]
+}
