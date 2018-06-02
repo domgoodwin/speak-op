@@ -17,14 +17,15 @@
     "url": "https://github.com/domgoodwin/speak-op/issues"
   },
   "homepage": "https://github.com/domgoodwin/speak-op#readme",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
-    "alexa-sdk": "^1.0.25"
+    "ask-sdk-core": "^2.0.5",
+    "ask-sdk-model": "^1.3.0",
+    "node-fetch": "^2.1.2"
   },
   "files_to_deploy": [
     "package.json",
-    "index.js",
+    "main.js",
     "GetServiceStatus.js"
   ]
 }

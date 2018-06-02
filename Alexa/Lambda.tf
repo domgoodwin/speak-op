@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "eu-west-2"
+  region = "eu-west-1"
 }
 
 variable "app_version" {}
@@ -8,7 +8,7 @@ resource "aws_lambda_function" "example" {
   function_name = "SpeakOp_Main"
 
   # The bucket name as created earlier with "aws s3api create-bucket"
-  s3_bucket = "speakop-lambda-deploy"
+  s3_bucket = "speakop-lambda-deploy-new"
   s3_key    = "package-${var.app_version}.zip"
 
   # "main" is the filename within the zip file (main.js) and "handler"
@@ -16,9 +16,16 @@ resource "aws_lambda_function" "example" {
   # exported in that file.
   handler = "main.handler"
 
-  runtime = "nodejs6.10"
+  runtime = "nodejs8.10"
 
-  role = "${aws_iam_role.lambda_exec.arn}"
+  #role = "${aws_iam_role.lambda_exec.arn}"
+  role = "arn:aws:iam::005713764567:role/lambda_basic_execution"
+
+  environment {
+    variables = {
+      APPID = "amzn1.ask.skill.115d4af4-a4b4-40ee-92e9-a50903d8026c"
+    }
+  }
 }
 
 # IAM role which dictates what other AWS services the Lambda function
