@@ -2,7 +2,7 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core');
-const GetServiceStatus = require('./Elastic.js')
+const Elastic = require('./Elastic.js')
 
 const SKILL_NAME = 'Speak Op';
 const HELP_REPROMPT = 'What would you like to do?';
@@ -20,7 +20,7 @@ const GetServiceHandler = {
     console.log(JSON.stringify(handlerInput.requestEnvelope.request.intent));
     console.log("GetServiceStatus");
     var service = handlerInput.requestEnvelope.request.intent.slots.service.value;//"google";
-    var speech = await GetServiceStatus.GetStatusNew(service);
+    var speech = await Elastic.GetStatusNew(service);
     return await handlerInput.responseBuilder
         .speak(speech)
         .getResponse();
@@ -35,7 +35,7 @@ const GetStats = {
     async handle(handlerInput) {
         console.log("GetStats");
         var speech = "The load of your services are: ";
-        var services = await GetServiceStatus.GetStats();
+        var services = await Elastic.GetStats();
         for (var service in services) {
             speech += service + " is " + services[service] + ",";
         }
@@ -44,6 +44,25 @@ const GetStats = {
             .speak(speech)
             .getResponse();
       },
+};
+
+const OpenDashboard = {
+  canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+          handlerInput.requestEnvelope.request.intent.name == 'OpenDashboard';
+  },
+  async handle(handlerInput) {
+      console.log("OpenDashboard");
+      var speech = "";
+      var endpoint = process.env.DASHURL;
+      var dash = handlerInput.requestEnvelope.request.intent.slots.dashboard.value;
+      var screen = handlerInput.requestEnvelope.request.intent.slots.screen.value;
+      var services = await Elastic.OpenDash(endpoint, dash, screen);
+      speech += "Signal successfully sent to open dashboard: " + dash + ", on screen: " + screen;
+      return await handlerInput.responseBuilder
+          .speak(speech)
+          .getResponse();
+    },
 };
 
 const HelpHandler = {

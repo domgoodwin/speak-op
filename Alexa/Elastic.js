@@ -32,6 +32,20 @@ async function getStats(){
 //getStats();
 module.exports.GetStats = getStats;
 
+async function openDash(endpoint, dash, screen){
+    var requrl = endpoint + "/dash";
+    try {
+        const response = await fetch(requrl);
+        const json = await response.json();
+        console.log(JSON.stringify(json));
+        return json;
+    } catch (error) {
+        console.log(error);
+        return "Unable to call dashboard endpoint: " + requrl;
+    }
+}
+//getStats();
+module.exports.OpenDash = openDash;
 
 // Logs IP used for secuirty purposes
 getIP(function(ip){
