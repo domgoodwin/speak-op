@@ -16,6 +16,12 @@ function chooseURL(request){
     case "pulse":
       url = "https://apppulse-active.saas.hpe.com/apmsaas-web/dist/index.html?TENANTID=335121943#/dashboard";
       break;
+    case "kibana":
+      url = "search-rpa-demo-5ytqt4pq75irmtyirthnq3cw6q.eu-west-2.es.amazonaws.com/_plugin/kibana/app/kibana#/dashboard/59bca6e0-67d9-11e8-8e7d-93c83d19852b";
+      break;
+    case "social":
+      url = "C:/repo/speak-op/Dashboard/SocialMedia/CSOMediaDashboard.html";
+      break;
   }
 return url;
 }
