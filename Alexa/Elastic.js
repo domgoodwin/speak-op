@@ -33,10 +33,11 @@ async function getStats(){
 module.exports.GetStats = getStats;
 
 async function openDash(endpoint, dash, screen){
-    var requrl = endpoint + "/dash";
+    var requrl = endpoint + "/newdash?url=" + dash + "&mon=" + screen;
     try {
-        const response = await fetch(requrl);
+        const response = await fetch(requrl, { method: 'POST', body: '' });
         const json = await response.json();
+        console.log(json);
         console.log(JSON.stringify(json));
         return json;
     } catch (error) {
@@ -46,6 +47,22 @@ async function openDash(endpoint, dash, screen){
 }
 //getStats();
 module.exports.OpenDash = openDash;
+
+async function dailyStart(endpoint){
+    var requrl = endpoint + "/statup";
+    try {
+        const response = await fetch(requrl,{ method: 'POST', body: '' });
+        const json = await response.json();
+        console.log(json);
+        console.log(JSON.stringify(json));
+        return json;
+    } catch (error) {
+        console.log(error);
+        return "Unable to call dashboard endpoint: " + requrl;
+    }
+}
+//getStats();
+module.exports.DailyStart = dailyStart;
 
 // Logs IP used for secuirty purposes
 getIP(function(ip){

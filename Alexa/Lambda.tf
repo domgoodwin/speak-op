@@ -24,7 +24,7 @@ resource "aws_lambda_function" "example" {
   environment {
     variables = {
       APPID   = "amzn1.ask.skill.115d4af4-a4b4-40ee-92e9-a50903d8026c"
-      DASHURL = ""
+      DASHURL = "http://8d54f143.ngrok.io"
     }
   }
 }

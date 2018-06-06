@@ -44,6 +44,7 @@ const GetStats = {
             .speak(speech)
             .getResponse();
       },
+
 };
 
 const OpenDashboard = {
@@ -64,6 +65,24 @@ const OpenDashboard = {
           .getResponse();
     },
 };
+
+const DailyStart = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name == 'DailyStart';
+  },
+  async handle(handlerInput) {
+    console.log('DailyStart');
+    var speech = 'Status: ';
+    var endpoint = process.env.DASHURL;
+    var res = await Elastic.DailyStart(endpoint);
+    if(res)
+      speech += "Successfully sent signal to trigger start"
+    return await handlerInput.responseBuilder
+        .speak(speech)
+        .getResponse();
+  }
+}
 
 const HelpHandler = {
   canHandle(handlerInput) {
@@ -98,7 +117,7 @@ const SessionEndedRequestHandler = {
     return request.type === 'SessionEndedRequest';
   },
   handle(handlerInput) {
-    console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
+    console.log('Session ended with reason: ${handlerInput.requestEnvelope.request.reason}');
 
     return handlerInput.responseBuilder.getResponse();
   },
@@ -109,7 +128,7 @@ const ErrorHandler = {
     return true;
   },
   handle(handlerInput, error) {
-    console.log(`Error handled: ${error.message}` + "//" + error.stack);
+    console.log('Error handled: ${error.message}' + "//" + error.stack);
 
     return handlerInput.responseBuilder
       .speak('Sorry, an error occurred.')
@@ -124,6 +143,8 @@ exports.handler = skillBuilder
   .addRequestHandlers(
     GetServiceHandler,
     GetStats,
+    OpenDashboard,
+    DailyStart,
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler
