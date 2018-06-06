@@ -6,6 +6,8 @@
 # on predefined screens
 # ----------------------------------------------------
 
+param([String]$url,[String]$mon)
+
 $chromePath = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 # if Window not moved (especially on machine start) - try increaing the delay. 
 $ChromeStartDelay = 3
@@ -13,9 +15,8 @@ $ChromeStartDelay = 3
 Set-Location $PSScriptRoot
 . .\HelperFunctions.ps1
 
+
 # Kill all running instances
 # &taskkill /im chrome* /F
 
-#Monitor 'https://www.bbc.co.uk/ https://www.google.com' -MonitorNum 1
-#Monitor 'https://www.amazon.co.uk' -MonitorNum 2
-Monitor 'https://apppulse-active.saas.hpe.com/apmsaas-web/dist/index.html?TENANTID=335121943#/dashboard' -MonitorNum 1
+newMonitor $url -MonitorNum $mon

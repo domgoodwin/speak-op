@@ -1,6 +1,6 @@
 // routes/note_routes.js
 module.exports = function(app, db) {
-  app.post('/notes', (req, res) => {
+  app.post('/startup', (req, res) => {
     var spawn = require("child_process").spawn,child;
     child = spawn("powershell.exe",["C:/\\repo/\\speak-op/\\Dashboard/\\Kiosk-Mode/\\Ciklum-Kiosk.ps1"]);
     child.stdout.on("data",function(data){

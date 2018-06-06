@@ -10,7 +10,7 @@ $Helpers = [Tomin.Tools.KioskMode.Helper]
 
 if (!$ChromeStartDelay) {$ChromeStartDelay = 10}
 if (!$chromePath) {$chromePath = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'}
-if (!$chromeArguments) {$chromeArguments = '--new-window --incognito'}
+if (!$chromeArguments) {$chromeArguments = '--new-window start-maximized'}
 
 function Wait-ForProcess($procName, $procTitle)
 {
@@ -46,13 +46,27 @@ function Cockpit-Start($MonitorNum)
 }
 
 
-function Monitor($url, $MonitorNum)
+function Monitor($Url, $MonitorNum)
 {
     $counter = 0 
     Write-Output "starting chrome $Url , monitor: $MonitorNum"
     if ([int]$counter -gt 0) { $chromeArguments = '--profile-directory="Default"' }
     Start-Process $chromePath "$chromeArguments $Url"
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds 20
+    $window = (Get-Process -Name chrome | where MainWindowHandle -ne ([IntPtr]::Zero) | Select-Object -First 1).MainWindowHandle
+    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
+    $Helpers::MoveToMonitor($window, $MonitorNum)
+    $Helpers::SendKey($window, '{F11}')
+    Start-Sleep -Seconds 3
+    $counter = $counter + 1
+}
+
+function newMonitor($url, $MonitorNum)
+{
+    $counter = 0 
+    Write-Output "starting chrome $url, monitor: $MonitorNum"
+    Start-Process $chromePath "$chromeArguments $Url"
+    Start-Sleep -Seconds 20
     $window = (Get-Process -Name chrome | where MainWindowHandle -ne ([IntPtr]::Zero) | Select-Object -First 1).MainWindowHandle
     $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
     $Helpers::MoveToMonitor($window, $MonitorNum)

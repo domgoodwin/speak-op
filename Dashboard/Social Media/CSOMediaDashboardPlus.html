@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!------------------------------------------------------------------------------------------------------------
+  --
+  --	File: 		CSOMediaDashboardPlus.html
+  --	Author:		Andy Holmes
+  --	Version:	0.1
+  --	Date:		12/04/2017
+  --
+  --	0.1			Initial Version created specifically for Capgemini Service Operations
+<!------------------------------------------------------------------------------------------------------------
+  -- CSO Media Dashboard Plus contains feeds for:
+  -- 	Tweets by @Capgemini
+  --	Tweets about Capgemini
+  --	Feedwind HMRC Google Alert
+  --	Feedwind BBC News
+  ------------------------------------------------------------------------------------------------------------
+-->
+<html>
+	<head>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+			div.container {
+				width: 100%;
+				border: 1px solid gray;
+			}
+
+			h1 {
+				font-variant: small-caps;
+				font-size: 45px;
+				color: #2E97C4;
+				padding-top: 30px;
+			}
+
+			.col-lg-7 {
+				background-color: #;
+			}
+
+			body {
+
+			}
+
+			.thumbnail {
+				background-color: #ffffff;
+				min-height: 60px;
+			}
+
+
+			#header {
+				background-color: #FFFFFF;
+			}
+
+			#div-content {
+				background-color: #FFFFFF;
+			}
+		</style>
+		<title>Capgemini Social Media Dashboard</title>
+	</head>
+	<body>
+
+		<div class="container-fluid" align="center" id="header">
+		  <div class="row">
+			<div class="col-lg-2">
+				<br>
+					<a href="CSOMediaDashboard.html">
+						<IMG SRC="Logo.jpg" height="100px">
+					</a>
+			</div>
+			<div class="col-lg-8">
+				<a href="javascript:history.go(0)">
+					<h1>Capgemini Social Media Dashboard</h1>
+				</a>
+			</div>
+			<div class="col-lg-2">
+				<a href="CSOMediaDashboardPlus.html">
+					<IMG SRC="Capgemini.png" height="150px">
+				</a>
+			</div>
+		  </div>
+		</div>
+
+		<div class="container-fluid" align="center" id="div-content">
+
+			<div class="row">
+				<div class="col-lg-3">
+					<a class="twitter-timeline"
+					  href="https://twitter.com/Capgemini"
+					  data-width="100%"
+					  data-height="900"
+					  data-theme="light">
+					Tweets by @Capgemini
+					</a>
+					<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<div class="col-lg-3">
+					<a class="twitter-timeline"  
+						href="https://twitter.com/search?q=%40Capgemini" 
+						data-widget-id="852153828740931585">
+						Tweets about @Capgemini
+					</a>
+					<script>
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);
+							js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+					</script>
+				</div>
+
+
+				<div class="col-lg-3">
+					<!-- start feedwind code --> <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="9531/"></script> <!-- end feedwind code -->
+				</div>
+				<div class="col-lg-3">
+					<!-- start feedwind code --> <script type="text/javascript" src="https://feed.mikle.com/js/fw-loader.js" data-fw-param="9909/"></script> <!-- end feedwind code -->
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
