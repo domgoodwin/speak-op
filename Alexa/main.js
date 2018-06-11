@@ -3,6 +3,7 @@
 
 const Alexa = require('ask-sdk-core');
 const Elastic = require('./Elastic.js')
+const ServiceAlerts = require('./ServiceAlerts.js')
 
 const SKILL_NAME = 'Speak Op';
 const HELP_REPROMPT = 'What would you like to do?';
@@ -96,6 +97,63 @@ const Demo = {
         .getResponse();
   }
 }
+const GetBadServices = {
+  canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+          handlerInput.requestEnvelope.request.intent.name == 'GetBadServices';
+  },
+  async handle(handlerInput) {
+      console.log("GetBadServices");
+      var url = process.env.SERVICEURL;
+      var speech = "";
+      var res = await ServiceAlerts.GetBadServices(url);
+      if(res)
+        speech += res;
+      return await handlerInput.responseBuilder
+          .speak(speech)
+          .getResponse();
+    },
+
+};
+
+const GetNewTickets = {
+  canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+          handlerInput.requestEnvelope.request.intent.name == 'GetNewTickets';
+  },
+  async handle(handlerInput) {
+      console.log("GetNewTickets");
+      var url = process.env.SERVICEURL;
+      var speech = "";
+      var res = await ServiceAlerts.GetTickets(url);
+      if(res)
+        speech += res;
+      return await handlerInput.responseBuilder
+          .speak(speech)
+          .getResponse();
+    },
+
+};
+
+const GetBadServicesSMS = {
+  canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+          handlerInput.requestEnvelope.request.intent.name == 'GetBadServicesSMS';
+  },
+  async handle(handlerInput) {
+      console.log("GetBadServicesSMS");
+      var url = process.env.SERVICEURL;
+      var speech = "";
+      var res = await ServiceAlerts.GetBadServicesSMS(url);
+      if(res)
+        speech += res;
+      return await handlerInput.responseBuilder
+          .speak(speech)
+          .getResponse();
+    },
+
+};
+>>>>>>> f7f76503ca47aea8ffaa204be8f5f2ddd346a2a7
 
 const HelpHandler = {
   canHandle(handlerInput) {
@@ -158,7 +216,13 @@ exports.handler = skillBuilder
     GetStats,
     OpenDashboard,
     DailyStart,
+<<<<<<< HEAD
     Demo,
+=======
+    GetBadServices,
+    GetNewTickets,
+    GetBadServicesSMS,
+>>>>>>> f7f76503ca47aea8ffaa204be8f5f2ddd346a2a7
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler
