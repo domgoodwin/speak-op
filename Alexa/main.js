@@ -153,7 +153,6 @@ const GetBadServicesSMS = {
     },
 
 };
->>>>>>> f7f76503ca47aea8ffaa204be8f5f2ddd346a2a7
 
 const HelpHandler = {
   canHandle(handlerInput) {
@@ -216,13 +215,10 @@ exports.handler = skillBuilder
     GetStats,
     OpenDashboard,
     DailyStart,
-<<<<<<< HEAD
     Demo,
-=======
     GetBadServices,
     GetNewTickets,
     GetBadServicesSMS,
->>>>>>> f7f76503ca47aea8ffaa204be8f5f2ddd346a2a7
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler
