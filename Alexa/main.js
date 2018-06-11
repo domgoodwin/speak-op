@@ -84,6 +84,19 @@ const DailyStart = {
   }
 }
 
+const Demo = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type == 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name == 'Demo';
+  },
+  handle(handlerInput) {
+    var textToSay = "This is the demo";
+    return handlerInput.responseBuilder
+        .speak(textToSay)
+        .getResponse();
+  }
+}
+
 const HelpHandler = {
   canHandle(handlerInput) {
     console.log(JSON.stringify(handlerInput));
@@ -145,6 +158,7 @@ exports.handler = skillBuilder
     GetStats,
     OpenDashboard,
     DailyStart,
+    Demo,
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler
